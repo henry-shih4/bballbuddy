@@ -91,7 +91,7 @@ def room(request,pk):
     return  render(request,'base/room.html', context)
 
 
-@login_required(login_url='/login')
+@login_required(login_url='/login/')
 def userProfile(request,pk):
     user = User.objects.get(id=pk)
     profile = user.profile
@@ -103,7 +103,7 @@ def userProfile(request,pk):
 
 
 
-@login_required(login_url='/login')
+@login_required(login_url='/login/')
 def createRoom(request):
     form = RoomForm()
 
@@ -119,7 +119,7 @@ def createRoom(request):
     return render(request, 'base/room_form.html', context)
 
 ##update room
-@login_required(login_url='/login')
+@login_required(login_url='/login/')
 def updateRoom(request,pk):
     room = Room.objects.get(id=pk)
     form = RoomForm(instance=room)
@@ -136,7 +136,7 @@ def updateRoom(request,pk):
     return render(request,'base/room_form.html', context)
 
 
-@login_required(login_url='/login')
+@login_required(login_url='/login/')
 def deleteRoom(request,pk):
     room = Room.objects.get(id=pk)
     if request.user != room.host:
@@ -147,7 +147,7 @@ def deleteRoom(request,pk):
     return render(request,'base/delete.html',{'obj':room})
 
 
-@login_required(login_url='/login')
+@login_required(login_url='/login/')
 def deleteMessage(request,pk):
     message = Message.objects.get(id=pk)
     if request.user != message.user:
@@ -158,7 +158,7 @@ def deleteMessage(request,pk):
     return render(request,'base/delete.html',{'obj':message})
 
 
-@login_required(login_url='/login')
+@login_required(login_url='/login/')
 def updateUser(request):
     user = request.user
     profile = user.profile
